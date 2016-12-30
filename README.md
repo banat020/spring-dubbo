@@ -1,0 +1,2 @@
+# springinvoker-server
+通过HttpSpringInvoker中间件技术实现分布式服务系统
