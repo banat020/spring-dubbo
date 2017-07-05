@@ -1,5 +1,9 @@
 # spring-dubbo
-通过dubbo中间件技术，集成Spring实现分布式服务框架。
+通过dubbo中间件技术，整合Spring实现分布式服务框架；同时，还整合Hibernate、Mybatis3实现对数据表的操作。<br>
+为什么要同时整合Hibernate与MyBatis呢？因为，对数据的增删改，Hibernate提供简单的实现，不过，对于复杂的查询，尤其是动态查询，Hibernate的实现就显得比较麻烦了，于是，再集合MyBatis3，用于处理数据查询，并且用MyBatis查询还有性能更优的好处。<br>
+还有另一点，技术框架只对Hibernate的操作应用事务，MyBatis的操作不启用事务。<br>
+<br><br>
+<b>声明：此技术框架已在本人所负责的几个项目中应用验证过，可以解决高并发服务要求，同时具有持续提供服务的能力（健壮性），这完全得益于Dubbo的容错性设计。</b>
 <br><br>
 代码结构说明：<br>
 spring-dubbo-api，远程调用的接口定义。<br>
