@@ -12,13 +12,13 @@ package com.banling.springdubbo.ds.sys.mapper;
  *
  */
 public interface SysUsersMapper {
-	String COUNT_ALL="countAll";
-	String COUNT_BY_WHERE="countByWhere";
-	String FIND_BY_ID="findById";
-	String FIND_BY_IDS="findByIds";
-	String FIND_ALL="findAll";
-	String FIND_BY_WHERE="findByWhere";
-	String FIND_BY_NAME="findByName";
+	String COUNT_ALL="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.countAll";
+	String COUNT_BY_WHERE="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.countByWhere";
+	String FIND_BY_ID="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.findById";
+	String FIND_BY_IDS="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.findByIds";
+	String FIND_ALL="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.findAll";
+	String FIND_BY_WHERE="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.findByWhere";
+	String FIND_BY_NAME="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper.findByName";
 	
 //	List<Map<String,Object>> getAllUsers();
 //	

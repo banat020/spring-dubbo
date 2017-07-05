@@ -5,7 +5,8 @@
   <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:config/server/applicationContext-server.xml
+            classpath:config/server/applicationContext-server.xml,
+            classpath:config/ds/applicationContext-ds.xml,
         </param-value>
     </context-param>
     <listener>

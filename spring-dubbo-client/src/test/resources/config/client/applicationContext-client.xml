@@ -41,6 +41,7 @@
 	<!-- interface属性，才是服务调用的唯一标志，与id的值设置无关 -->
 	<!-- id值同普通bean的id一样，用在beanFactory中生成一个命名的实例 -->
 	<dubbo:reference registry="curRegistry" id="helloService"  interface="com.banling.springdubbo.api.simple.service.IHelloService" version="1.0"/>
-	
+	<dubbo:reference registry="curRegistry" id="dsSysUsersService" interface="com.banling.springdubbo.api.ds.service.IDsSysUsersService" version="1.0"/>
+	<dubbo:reference registry="curRegistry" id="queryService" interface="com.banling.springdubbo.api.ds.base.IQueryService" version="1.0"/>
 	 
 </beans>	

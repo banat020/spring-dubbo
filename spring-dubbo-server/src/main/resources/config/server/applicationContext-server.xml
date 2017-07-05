@@ -40,9 +40,8 @@
 	
 	<!-- 声明需要暴露的服务接口 dubbo:service-->
 	<!-- 客户端是相应的dubbo:reference -->
-	<dubbo:service interface="com.banling.springdubbo.api.simple.service.IHelloService"  ref="helloService" loadbalance="roundrobin" version="1.0"/>
+	<dubbo:service interface="com.banling.springdubbo.api.simple.service.IHelloService"  ref="helloService" loadbalance="roundrobin" version="1.0"/>	
+	<dubbo:service interface="com.banling.springdubbo.api.ds.service.IDsSysUsersService"  ref="dsSysUsersService" loadbalance="roundrobin" version="1.0"/>
+	<dubbo:service interface="com.banling.springdubbo.api.ds.base.IQueryService"  ref="queryService" loadbalance="roundrobin" version="1.0"/>
 	
-	<!-- 
-	<dubbo:service interface="com.banling.dubbo.server.test.ITestQueryService"  ref="testQueryService" loadbalance="roundrobin" version="1.0"/>
-	 -->
 </beans>	
