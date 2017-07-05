@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd 
+			http://code.alibabatech.com/schema/dubbo
+			http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+			">
+	<!-- 自动扫描除Controller以外的注解 -->	
+	<context:component-scan base-package="com.banling.springdubbo.server.*">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 注入属性 -->
+	<bean id="propertyPlaceHolderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+			    <value>classpath:config/server/server.config.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="false" />
+	</bean>
+
+     <!-- 当前应用名称，用于注册中心计算应用间依赖关系（也就是相同的服务就应该有相同的名，用于多机部署的集群）。另外，注意：消费者和提供者应用名不要一样，此参数不是匹配条件。 -->
+     <dubbo:application name="dubbo_provider" />
+
+	
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry address="zookeeper://localhost:2181?backup=localhost:2182" />  
+	
+	<!-- 用dubbo协议在20881端口暴露服务 -->
+	<!-- 每个应用的服务端口不能重复 -->
+	<dubbo:protocol name="dubbo" port="20881" />
+	
+	<!-- 声明需要暴露的服务接口 dubbo:service-->
+	<!-- 客户端是相应的dubbo:reference -->
+	<dubbo:service interface="com.banling.springdubbo.api.simple.service.IHelloService"  ref="helloService" loadbalance="roundrobin" version="1.0"/>
+	
+	<!-- 
+	<dubbo:service interface="com.banling.dubbo.server.test.ITestQueryService"  ref="testQueryService" loadbalance="roundrobin" version="1.0"/>
+	 -->
+</beans>	

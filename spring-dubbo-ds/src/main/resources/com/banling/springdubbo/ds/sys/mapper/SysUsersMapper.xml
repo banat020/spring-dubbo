@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.banling.springdubbo.ds.sys.mapper.SysUsersMapper">
+	
+	<!-- 必须声明返回的类型resultType -->
+	<select id="countAll" resultType="Integer">
+        SELECT COUNT(1) FROM SYS_USERS
+    </select>
+    
+    <!-- 传多个参数时，parameterType建议用Map -->
+    <!-- 动态参数 -->
+    <select id="countByWhere" resultType="Integer" parameterType="java.util.Map">
+        SELECT COUNT(1) FROM SYS_USERS  where 1 = 1
+        <if test="userName!=null">
+        	and userName like #{userName}
+        </if>
+        <if test="userAge!=null">
+        	and userAge &gt;= {userAge}
+        </if>
+    </select>
+    
+    <!-- 传一个参数时，parameterType可以直接用该参数的类型；当然，也可以用Map。 -->
+    <!-- 用通配符代替具体返回列时，所有列都会被小写。通过Map取值时要注意。 -->
+    <select id="findById" resultType="java.util.Map" parameterType="String" >
+        SELECT * FROM SYS_USERS where 1=1
+        	USER_ID = #{userId}
+    </select>
+    
+    <!-- 简单的in查询 -->
+    <select id="findByIds" resultType="java.util.Map" parameterType="java.util.Map">
+    	SELECT USER_ID,USER_NAME,USER_age FROM SYS_USERS where
+    		USER_ID in
+    		<foreach collection="listUser" item="item" index="index" open="(" close=")" separator=",">
+		 		#{item}
+			</foreach>
+		ORDER BY USER_NAME ASC
+    </select>
+
+    <select id="findAll" resultType="java.util.Map">
+        SELECT * FROM SYS_USERS
+    </select>
+    
+    <!-- 动态参数 -->
+    <select id="findByWhere" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT * FROM SYS_USERS where 1=1
+        <if test="userName!=null">
+        	and USER_NAME like #{userName}
+        </if>
+        <if test="userAge!=null">
+        	and USER_AGE &gt;= #{userAge}
+        </if>
+    </select>
+    
+    <select id="findByName" resultType="java.util.Map" parameterType="java.util.Map" >
+        SELECT * FROM SYS_USERS where 
+        	USER_Name like #{userName}
+        ORDER BY USER_NAME ASC
+    </select>
+</mapper>

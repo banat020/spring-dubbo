@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.banling</groupId>
+    <artifactId>spring-dubbo</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>spring-dubbo-server</artifactId>
+  <packaging>war</packaging>
+  <description>Dubbo的服务端（WEB服务），发布服务。</description>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.banling</groupId>
+	    <artifactId>spring-dubbo-api</artifactId>
+	    <version>1.0</version>
+  	</dependency>
+  	
+  	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>dubbo</artifactId>
+		<version>2.4.11</version>
+		<!-- 因为dubbo加载的是Spring2.5，而项目中用的是4.2，因此排除Spring2.5 -->
+		<exclusions>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+			</exclusion>
+			<!-- 这里加载的又是旧的jar包,因此排除 -->
+			<exclusion>
+				<groupId>org.javassist</groupId>
+	    		<artifactId>javassist</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.zookeeper</groupId>
+		<artifactId>zookeeper</artifactId>
+		<version>3.4.6</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.101tec</groupId>
+	    <artifactId>zkclient</artifactId>
+	    <version>0.10</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>4.2.4.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.javassist</groupId>
+	    <artifactId>javassist</artifactId>
+	    <version>3.21.0-GA</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>commons-io</groupId>
+  		<artifactId>commons-io</artifactId>
+		<version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+		<scope>provided</scope>
+	</dependency>
+  </dependencies>
+  
+  <build>
+	<plugins>
+		<!-- Maven Install时排除测试 -->
+	   <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <configuration>
+	                <testFailureIgnore>true</testFailureIgnore>
+					<skipTests>true</skipTests>
+	            </configuration>
+	     </plugin>
+     
+ 		<plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <configuration>  
+                <source>1.7</source>  
+                <target>1.7</target>  
+                <encoding>UTF-8</encoding>
+            </configuration>  
+        </plugin>
+  	</plugins> 
+   </build>
+</project>
