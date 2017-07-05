@@ -99,8 +99,7 @@
 	<!-- 使用声明式控制事务 -->	
 	<!-- 注意，应用MyBatis只做查询，对MyBatis的应用不起用事务， -->
 	<tx:annotation-driven />
-		 
-	 
+	
 	<!-- 创建MyBatis的SqlSessionFactory(注：通过SqlSessionFactoryBean来创建)，同时指定数据源 -->  
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />
